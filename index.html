@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إمبراطورية الرياح الأربعة - البداية</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="game-container">
+        <div id="phone-scene" class="scene active">
+            <div class="phone-hand">
+                <div class="phone-screen">
+                    <div class="glitch-text">جاري التحميل...</div>
+                </div>
+            </div>
+            <p class="instruction">اضغط على الشاشة للبدء</p>
+        </div>
+
+        <div id="flash-overlay"></div>
+
+        <div id="kingdom-scene" class="scene">
+            <div class="crown-animation">👑</div>
+            <div class="dialogue-box">
+                <h2 id="speaker-name">الوزير الأكبر</h2>
+                <p id="dialogue-text"></p>
+                <button id="next-btn" style="display:none;">استمر</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
