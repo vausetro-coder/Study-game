@@ -1,57 +1,54 @@
-const phoneScene = document.getElementById('phone-scene');
-const flashOverlay = document.getElementById('flash-overlay');
-const kingdomScene = document.getElementById('kingdom-scene');
-const dialogueText = document.getElementById('dialogue-text');
-const nextBtn = document.getElementById('next-btn');
+const startBtn = document.getElementById('start-portal');
+const flash = document.getElementById('time-portal-flash');
+const modernScene = document.getElementById('modern-scene');
+const throneScene = document.getElementById('throne-scene');
+const speechText = document.getElementById('speech-text');
+const continueBtn = document.getElementById('continue-btn');
 
-const story = [
-    "لقد صدقت النبوءة... انشق نسيج الزمن، واستجاب القدر لندائنا.",
-    "انهض يا مولاي... انهض، فعرش 'نيلوفرا' كان بانتظارك منذ ألف عام!",
-    "أنا وزيرك الأكبر، وتحت أمرك كل موارد المملكة. لنبدأ بناء مجدنا."
+const storyLines = [
+    "ماذا يحدث؟ الهاتف... إنه يمتص طاقتي!",
+    "(تفتح عينيك ببطء لتجد نفسك في قاعة مهيبة)",
+    "الوزير الأكبر: لقد صدقت النبوءة.. انشق نسيج الزمن واستجاب القدر لندائنا.",
+    "الوزير الأكبر: انهض يا مولاي، فعرش نيلوفرا كان بانتظارك منذ ألف عام!",
+    "الآن، لنبدأ في بناء أعظم إمبراطورية شهدها التاريخ."
 ];
 
-let currentLine = 0;
+let currentStep = 0;
 
-// بدء الانتقال عند الضغط
-phoneScene.addEventListener('click', () => {
-    // 1. تفعيل الفلاش
-    flashOverlay.classList.add('flash-active');
+startBtn.addEventListener('click', () => {
+    // تشغيل الفلاش
+    flash.classList.add('flash-trigger');
     
     setTimeout(() => {
-        // 2. إخفاء الموبايل وإظهار المملكة
-        phoneScene.classList.remove('active');
-        kingdomScene.classList.add('active');
-        startDialogue();
-    }, 1000); // الانتقال بعد ثانية واحدة من الفلاش
+        modernScene.classList.remove('active');
+        throneScene.classList.add('active');
+        nextDialogue();
+    }, 800);
 });
 
-function startDialogue() {
-    typeWriter(story[currentLine]);
+function nextDialogue() {
+    if (currentStep < storyLines.length) {
+        typeWriter(storyLines[currentStep]);
+        currentStep++;
+    } else {
+        speechText.innerText = "جاهز للمعركة القادمة؟";
+        continueBtn.innerText = "ابدأ بناء المملكة";
+    }
 }
 
 function typeWriter(text) {
-    dialogueText.innerHTML = "";
+    speechText.innerText = "";
+    continueBtn.classList.add('hidden');
     let i = 0;
-    nextBtn.style.display = "none";
-    
-    function type() {
+    let timer = setInterval(() => {
         if (i < text.length) {
-            dialogueText.innerHTML += text.charAt(i);
+            speechText.innerText += text.charAt(i);
             i++;
-            setTimeout(type, 50);
         } else {
-            nextBtn.style.display = "inline-block";
+            clearInterval(timer);
+            continueBtn.classList.remove('hidden');
         }
-    }
-    type();
+    }, 50);
 }
 
-nextBtn.addEventListener('click', () => {
-    currentLine++;
-    if (currentLine < story.length) {
-        typeWriter(story[currentLine]);
-    } else {
-        dialogueText.innerHTML = "بدأت اللعبة! (هنا ينتقل اللاعب لواجهة بناء المملكة)";
-        nextBtn.style.display = "none";
-    }
-});
+continueBtn.addEventListener('click', nextDialogue);
