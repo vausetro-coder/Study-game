@@ -3,29 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إمبراطورية الرياح الأربعة - البداية</title>
+    <title>إمبراطورية الرياح الأربعة | البداية</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div id="game-container">
-        <div id="phone-scene" class="scene active">
-            <div class="phone-hand">
-                <div class="phone-screen">
-                    <div class="glitch-text">جاري التحميل...</div>
+    <div id="game-viewport">
+        <div id="modern-scene" class="scene active">
+            <div class="phone-wrapper">
+                <div class="hand-overlay"></div>
+                <div class="phone-device">
+                    <div class="screen-content">
+                        <div class="glitch-logo">الرياح الأربعة</div>
+                        <p>جاري مزامنة الزمن...</p>
+                    </div>
                 </div>
             </div>
-            <p class="instruction">اضغط على الشاشة للبدء</p>
+            <button id="start-portal">المس الشاشة للبدء</button>
         </div>
 
-        <div id="flash-overlay"></div>
+        <div id="time-portal-flash"></div>
 
-        <div id="kingdom-scene" class="scene">
-            <div class="crown-animation">👑</div>
-            <div class="dialogue-box">
-                <h2 id="speaker-name">الوزير الأكبر</h2>
-                <p id="dialogue-text"></p>
-                <button id="next-btn" style="display:none;">استمر</button>
+        <div id="throne-scene" class="scene">
+            <div class="overlay-dark"></div>
+            <div class="coronation-content">
+                <div class="dialogue-box">
+                    <h3 id="character-name">الوزير الأكبر</h3>
+                    <p id="speech-text"></p>
+                    <button id="continue-btn" class="hidden">استمر</button>
+                </div>
             </div>
         </div>
     </div>
